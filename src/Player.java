@@ -4,9 +4,15 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
-public class Joueur {
+public class Player {
 
-    private  double width =80, height =20;
+    private final double width;
+    private final double height;
+
+    public Player() {
+        this.width = 80;
+        this.height = 20;
+    }
 
     private Group createToken(double scale) {
 
