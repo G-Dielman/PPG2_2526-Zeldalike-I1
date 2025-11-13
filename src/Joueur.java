@@ -8,7 +8,7 @@ public class Joueur {
 
     private  double width =80, height =20;
 
-    private Group createTopDownLink(double scale) {
+    private Group createToken(double scale) {
 
         Ellipse corp= new Ellipse(0,0, width/2, height/2);
         Circle tete = new Circle(0,0,15);
