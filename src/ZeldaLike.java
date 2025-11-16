@@ -1,5 +1,6 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -19,6 +20,8 @@ public class ZeldaLike extends Application {
     private static final int HAUTEUR = 600;
     private Pane monde;
 
+
+
     @Override
     public void start(Stage primaryStage) {
         monde = new Pane();
@@ -27,6 +30,12 @@ public class ZeldaLike extends Application {
         primaryStage.setTitle("Zelda Like - Itération 1");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        Joueur joueur = new Joueur();
+        Group link = joueur.getLink();
+        link.setLayoutX(400);
+        link.setLayoutY(200);
+        monde.getChildren().add(link);
     }
 
 

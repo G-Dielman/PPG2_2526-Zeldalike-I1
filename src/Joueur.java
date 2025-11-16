@@ -8,14 +8,28 @@ public class Joueur {
 
     private  double width =80, height =20;
 
+    public Joueur(){
+        this.link = createToken(1.0);
+    }
+
+
+    public Group getLink() {
+        return link;
+    }
+
+    private Group link;
+
     private Group createToken(double scale) {
 
         Ellipse corp= new Ellipse(0,0, width/2, height/2);
         Circle tete = new Circle(0,0,15);
         Circle main = new Circle(32,-10,6);
         Rectangle sword = new Rectangle(25,-13 ,15,3);
-        sword.setFill(Color.WHITE);
+
         corp.setFill(Color.DARKOLIVEGREEN);
+        tete.setFill(Color.DARKORANGE);
+        main.setFill(Color.DARKGREEN);
+        sword.setFill(Color.WHITE);
 
 
         Group g = new Group(corp, tete, main, sword);
@@ -23,5 +37,7 @@ public class Joueur {
         return g;
     }
 
-
+    public void setLink(Group link) {
+        this.link = link;
+    }
 }
