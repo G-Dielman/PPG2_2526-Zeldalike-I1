@@ -8,6 +8,9 @@ public class Joueur {
 
     private  double width =80, height =20;
 
+    private double x;
+    private double y;
+
     public Joueur(){
         this.link = createToken(1.0);
     }
@@ -36,6 +39,14 @@ public class Joueur {
 
         return g;
     }
+    //artus add move method
+    public void move(double movex, double movey) {
+        this.x += movex;
+        this.y += movey;
+        link.setLayoutX(x);
+        link.setLayoutY(y);
+    }
+    //end artus update
 
     public void setLink(Group link) {
         this.link = link;

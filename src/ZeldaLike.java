@@ -36,6 +36,28 @@ public class ZeldaLike extends Application {
         link.setLayoutX(400);
         link.setLayoutY(200);
         monde.getChildren().add(link);
+        //artus add switch case for player movement
+
+        //joueur.move(400,400);
+        scene.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case UP:
+                    joueur.move(0, -5);
+                    break;
+                case DOWN:
+                    joueur.move(0, 5);
+                    break;
+                case LEFT:
+                    joueur.move(-5, 0);
+                    break;
+                case RIGHT:
+                    joueur.move(5, 0);
+                    break;
+                default:
+                    break;
+            }
+        });
+        //end artus update
     }
 
 
