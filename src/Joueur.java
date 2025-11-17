@@ -4,15 +4,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
-public class Player {
+public class Joueur {
 
-    private final double width;
-    private final double height;
+    private final double width =80;
+    private final double height=20;
 
-    public Player() {
-        this.width = 80;
-        this.height = 20;
-    }
+
 
     private double x;
     private double y;
