@@ -8,21 +8,24 @@ public class Joueur {
 
     private  double width =80, height =20;
 
-    private double x;
-    private double y;
+    private double x = 400;
+    private double y = 400;
+
+    private int vitesse = 15;
 
     public Joueur(){
         this.link = createToken(1.0);
+
+
+
     }
-
-
     public Group getLink() {
         return link;
     }
 
     private Group link;
 
-    private Group createToken(double scale) {
+    public Group createToken(double scale) {
 
         Ellipse corp= new Ellipse(0,0, width/2, height/2);
         Circle tete = new Circle(0,0,15);
@@ -41,12 +44,29 @@ public class Joueur {
     }
     //artus add move method
     public void move(double movex, double movey) {
+
         this.x += movex;
         this.y += movey;
         link.setLayoutX(x);
         link.setLayoutY(y);
+
     }
     //end artus update
+
+    public double getX() {
+        return this.x;
+    }
+
+    public double getY() {
+        return this.y;
+    }
+
+    //add get vitesse
+    public int getVitesse(){
+        return this.vitesse;
+    }
+
+
 
     public void setLink(Group link) {
         this.link = link;

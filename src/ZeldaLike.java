@@ -25,6 +25,7 @@ public class ZeldaLike extends Application {
     @Override
     public void start(Stage primaryStage) {
         monde = new Pane();
+        int position = 0;
         Scene scene = new Scene(monde, LARGEUR, HAUTEUR);
 
         primaryStage.setTitle("Zelda Like - Itération 1");
@@ -33,8 +34,8 @@ public class ZeldaLike extends Application {
 
         Joueur joueur = new Joueur();
         Group link = joueur.getLink();
-        link.setLayoutX(400);
-        link.setLayoutY(200);
+        link.setLayoutX(joueur.getX());
+        link.setLayoutY(joueur.getY());
         monde.getChildren().add(link);
         //artus add switch case for player movement
 
@@ -42,21 +43,22 @@ public class ZeldaLike extends Application {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case UP:
-                    joueur.move(0, -5);
+                    joueur.move(0, -joueur.getVitesse());
                     break;
                 case DOWN:
-                    joueur.move(0, 5);
+                    joueur.move(0, +joueur.getVitesse());
                     break;
                 case LEFT:
-                    joueur.move(-5, 0);
+                    joueur.move(-joueur.getVitesse(), 0);
                     break;
                 case RIGHT:
-                    joueur.move(5, 0);
+                    joueur.move(+joueur.getVitesse(), 0);
                     break;
                 default:
                     break;
             }
         });
+        System.out.println(joueur);
         //end artus update
     }
 
