@@ -12,6 +12,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ZeldaLike extends Application {
@@ -19,6 +21,7 @@ public class ZeldaLike extends Application {
     private static final int LARGEUR = 800;
     private static final int HAUTEUR = 600;
     private Pane monde;
+    private List<Wall>walls;
 
 
 
@@ -30,6 +33,21 @@ public class ZeldaLike extends Application {
 
         primaryStage.setTitle("Zelda Like - Itération 1");
         primaryStage.setScene(scene);
+
+        this.walls = new ArrayList<>();
+        //mure du haut
+       walls.add(new Wall(0,0,800,10, Color.BROWN));
+       //mure du bas
+        walls.add(new Wall(0,600-10,800,10, Color.BROWN));
+        //mure de droite
+        walls.add(new Wall(800-10,0,10,600, Color.BROWN));
+        //mure de gauche
+        walls.add(new Wall(0,0,10,600, Color.BROWN));
+
+       for (Wall wall:walls) {
+            monde.getChildren().add(wall);
+        }
+
         primaryStage.show();
 
         Joueur joueur = new Joueur();

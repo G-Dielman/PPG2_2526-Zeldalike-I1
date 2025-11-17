@@ -1,3 +1,7 @@
+import java.util.List;
+
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -6,7 +10,10 @@ import javafx.scene.shape.Rectangle;
 
 public class Joueur {
 
-    private  double width =80, height =20;
+    private final double width =80;
+    private final double height=20;
+
+
 
     private double x = 400;
     private double y = 400;
@@ -15,17 +22,16 @@ public class Joueur {
 
     public Joueur(){
         this.link = createToken(1.0);
-
-
-
     }
+
+
     public Group getLink() {
         return link;
     }
 
     private Group link;
 
-    public Group createToken(double scale) {
+    private Group createToken(double scale) {
 
         Ellipse corp= new Ellipse(0,0, width/2, height/2);
         Circle tete = new Circle(0,0,15);
@@ -44,12 +50,12 @@ public class Joueur {
     }
     //artus add move method
     public void move(double movex, double movey) {
-
         this.x += movex;
+        this.resolveCollisionOnXAxis(List.of()); // TODO: Add wall collisions to resolve
         this.y += movey;
+        this.resolveCollisionOnYAxis(List.of()); // TODO: Add wall collisions to resolve
         link.setLayoutX(x);
         link.setLayoutY(y);
-
     }
     //end artus update
 
@@ -67,6 +73,70 @@ public class Joueur {
     }
 
 
+
+    private void resolveCollisionOnXAxis(List<Rectangle> obstacles) {
+        double linkBoundsWidth = this.getLinkBounds().getWidth();
+        for(final Rectangle obstacle : obstacles) {
+            double obstacleLeft = obstacle.getX();
+            double obstacleRight = obstacle.getX() + obstacle.getWidth();
+            if(this.canCollideLeft(obstacle)) {
+                this.x = obstacleLeft - linkBoundsWidth;
+            }
+            if(this.canCollideRight(obstacle)) {
+                this.x = obstacleRight;
+            }
+        }
+    }
+
+    private void resolveCollisionOnYAxis(List<Rectangle> obstacles) {
+        double linkBoundsHeight = this.getLinkBounds().getHeight();
+        for(final Rectangle obstacle : obstacles) {
+            double obstacleTop = obstacle.getY();
+            double obstacleBottom = obstacle.getY() + obstacle.getHeight();
+            if(this.canCollideTop(obstacle)) {
+                this.y = obstacleTop - linkBoundsHeight;
+            }
+            if(this.canCollideBottom(obstacle)) {
+                this.y = obstacleBottom;
+            }
+        }
+    }
+
+    public boolean canCollideLeft(Rectangle rectangle) {
+        return false; // TODO: Add collision detection
+    }
+
+    public boolean isMovingToLeft(Rectangle rectangle) {
+        return false;
+    }
+
+    public boolean canCollideRight(Rectangle rectangle) {
+        return false; // TODO: Add collision detection
+    }
+
+    public boolean isMovingToRight(Rectangle rectangle) {
+        return false;
+    }
+
+    public boolean canCollideTop(Rectangle rectangle) {
+        return false; // TODO: Add collision detection
+    }
+
+    public boolean isMovingToTop(Rectangle rectangle) {
+        return false;
+    }
+
+    public boolean canCollideBottom(Rectangle rectangle) {
+        return false; // TODO: Add collision detection
+    }
+
+    public boolean isMovingToBottom(Rectangle rectangle) {
+        return false;
+    }
+
+    private Bounds getLinkBounds() {
+        return this.link.getBoundsInParent();
+    }
 
     public void setLink(Group link) {
         this.link = link;
