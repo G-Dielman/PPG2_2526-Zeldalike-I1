@@ -47,11 +47,11 @@ public class Joueur {
         return g;
     }
     //artus add move method
-    public void move(double movex, double movey) {
+    public void move(double movex, double movey, List<Rectangle> obstacles) {
         this.x += movex;
-        this.resolveCollisionOnXAxis(List.of()); // TODO: Add wall collisions to resolve
+        this.resolveCollisionOnXAxis(obstacles);
         this.y += movey;
-        this.resolveCollisionOnYAxis(List.of()); // TODO: Add wall collisions to resolve
+        this.resolveCollisionOnYAxis(obstacles);
         link.setLayoutX(x);
         link.setLayoutY(y);
     }
@@ -86,7 +86,7 @@ public class Joueur {
     }
 
     public boolean canCollideLeft(Rectangle rectangle) {
-        return false; // TODO: Add collision detection
+        return this.isMovingToLeft(rectangle) && this.getLinkBounds().intersects(rectangle.getBoundsInParent());
     }
 
     public boolean isMovingToLeft(Rectangle rectangle) {
@@ -94,7 +94,7 @@ public class Joueur {
     }
 
     public boolean canCollideRight(Rectangle rectangle) {
-        return false; // TODO: Add collision detection
+        return this.getLinkBounds().intersects(rectangle.getBoundsInParent());
     }
 
     public boolean isMovingToRight(Rectangle rectangle) {
@@ -102,7 +102,7 @@ public class Joueur {
     }
 
     public boolean canCollideTop(Rectangle rectangle) {
-        return false; // TODO: Add collision detection
+        return this.getLinkBounds().intersects(rectangle.getBoundsInParent());
     }
 
     public boolean isMovingToTop(Rectangle rectangle) {
@@ -110,11 +110,11 @@ public class Joueur {
     }
 
     public boolean canCollideBottom(Rectangle rectangle) {
-        return false; // TODO: Add collision detection
+        return this.getLinkBounds().intersects(rectangle.getBoundsInParent());
     }
 
     public boolean isMovingToBottom(Rectangle rectangle) {
-        return false;
+        return this.getLinkBounds().intersects(rectangle.getBoundsInParent());
     }
 
     private Bounds getLinkBounds() {

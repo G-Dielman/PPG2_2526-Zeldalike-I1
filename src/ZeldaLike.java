@@ -21,7 +21,8 @@ public class ZeldaLike extends Application {
     private static final int LARGEUR = 800;
     private static final int HAUTEUR = 600;
     private Pane monde;
-    private List<Wall>walls;
+    private List<Rectangle>obstacles;
+    private List<Wall> walls;
 
 
 
@@ -33,18 +34,20 @@ public class ZeldaLike extends Application {
         primaryStage.setTitle("Zelda Like - Itération 1");
         primaryStage.setScene(scene);
 
+        this.obstacles = new ArrayList<>();
         this.walls = new ArrayList<>();
         //mure du haut
-       walls.add(new Wall(0,0,800,10, Color.BROWN));
+        this.walls.add(new Wall(0,0,800,10, Color.BROWN));
        //mure du bas
-        walls.add(new Wall(0,600-10,800,10, Color.BROWN));
+        this.walls.add(new Wall(0,600-10,800,10, Color.BROWN));
         //mure de droite
-        walls.add(new Wall(800-10,0,10,600, Color.BROWN));
+        this.walls.add(new Wall(800-10,0,10,600, Color.BROWN));
         //mure de gauche
-        walls.add(new Wall(0,0,10,600, Color.BROWN));
+        this.walls.add(new Wall(0,0,10,600, Color.BROWN));
 
-       for (Wall wall:walls) {
+       for (Wall wall : this.walls) {
             monde.getChildren().add(wall);
+            this.obstacles.add(wall);
         }
 
         primaryStage.show();
@@ -60,16 +63,16 @@ public class ZeldaLike extends Application {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case UP:
-                    joueur.move(0, -5);
+                    joueur.move(0, -5,this.obstacles);
                     break;
                 case DOWN:
-                    joueur.move(0, 5);
+                    joueur.move(0, 5, this.obstacles);
                     break;
                 case LEFT:
-                    joueur.move(-5, 0);
+                    joueur.move(-5, 0, this.obstacles);
                     break;
                 case RIGHT:
-                    joueur.move(5, 0);
+                    joueur.move(5, 0, this.obstacles);
                     break;
                 default:
                     break;
