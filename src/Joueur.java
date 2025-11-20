@@ -1,8 +1,9 @@
 import java.util.List;
 
-import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
@@ -22,11 +23,6 @@ public class Joueur {
 
     public Joueur(){
         this.link = createToken(1.0);
-    }
-
-
-    public Group getLink() {
-        return link;
     }
 
     private Group link;
@@ -72,7 +68,11 @@ public class Joueur {
         return this.vitesse;
     }
 
-
+    public void spawn(Pane world) {
+        this.link.setLayoutX(this.x);
+        this.link.setLayoutY(this.y);
+        world.getChildren().add(this.link);
+    }
 
     private void resolveCollisionOnXAxis(List<Rectangle> obstacles) {
         double linkBoundsWidth = this.getLinkBounds().getWidth();

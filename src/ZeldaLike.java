@@ -24,8 +24,6 @@ public class ZeldaLike extends Application {
     private List<Rectangle>obstacles;
     private List<Wall> walls;
 
-
-
     @Override
     public void start(Stage primaryStage) {
         monde = new Pane();
@@ -54,10 +52,7 @@ public class ZeldaLike extends Application {
         primaryStage.show();
 
         Joueur joueur = new Joueur();
-        Group link = joueur.getLink();
-        link.setLayoutX(joueur.getX());
-        link.setLayoutY(joueur.getY());
-        monde.getChildren().add(link);
+        joueur.spawn(monde);
         //artus add switch case for player movement
 
         //joueur.move(400,400);
