@@ -75,12 +75,11 @@ public class Joueur {
     }
 
     private void resolveCollisionOnXAxis(List<Rectangle> obstacles) {
-        double linkBoundsWidth = this.getLinkBounds().getWidth();
         for(final Rectangle obstacle : obstacles) {
             double obstacleLeft = obstacle.getX();
             double obstacleRight = obstacle.getX() + obstacle.getWidth();
             if(this.canCollideLeft(obstacle)) {
-                this.x = obstacleLeft - linkBoundsWidth;
+                this.x = obstacleLeft - this.width;
             }
             if(this.canCollideRight(obstacle)) {
                 this.x = obstacleRight;
@@ -89,12 +88,11 @@ public class Joueur {
     }
 
     private void resolveCollisionOnYAxis(List<Rectangle> obstacles) {
-        double linkBoundsHeight = this.getLinkBounds().getHeight();
         for(final Rectangle obstacle : obstacles) {
             double obstacleTop = obstacle.getY();
             double obstacleBottom = obstacle.getY() + obstacle.getHeight();
             if(this.canCollideTop(obstacle)) {
-                this.y = obstacleTop - linkBoundsHeight;
+                this.y = obstacleTop - this.height;
             }
             if(this.canCollideBottom(obstacle)) {
                 this.y = obstacleBottom;
