@@ -20,6 +20,7 @@ public class Joueur {
     private double y = 400;
 
     private int vitesse = 15;
+    private double angle = 0;
 
     public Joueur(){
         this.link = createToken(1.0);
@@ -44,7 +45,7 @@ public class Joueur {
 
         return g;
     }
-    //artus add move method
+
     public void move(double movex, double movey, List<Rectangle> obstacles) {
         this.x += movex;
         this.resolveCollisionOnXAxis(obstacles);
@@ -53,7 +54,13 @@ public class Joueur {
         link.setLayoutX(x);
         link.setLayoutY(y);
     }
-    //end artus update
+
+    //add setter for angle
+    public void setAngle(double angle) {
+        this.angle = angle;
+        this.link.setRotate(angle);
+    }
+
 
     public double getX() {
         return this.x;
@@ -63,9 +70,13 @@ public class Joueur {
         return this.y;
     }
 
-    //add get vitesse
     public int getVitesse(){
         return this.vitesse;
+    }
+
+    //add getteur for angle
+    public double getAngle() {
+        return this.angle;
     }
 
     public void spawn(Pane world) {

@@ -53,28 +53,30 @@ public class ZeldaLike extends Application {
 
         Joueur joueur = new Joueur();
         joueur.spawn(monde);
-        //artus add switch case for player movement
 
-        //joueur.move(400,400);
+
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case UP:
                     joueur.move(0, -joueur.getVitesse(),this.obstacles);
+                    joueur.setAngle(0);
                     break;
                 case DOWN:
                     joueur.move(0, +joueur.getVitesse(),this.obstacles);
+                    joueur.setAngle(-180);
                     break;
                 case LEFT:
                     joueur.move(-joueur.getVitesse(), 0,this.obstacles);
+                    joueur.setAngle(-90);
                     break;
                 case RIGHT:
                     joueur.move(+joueur.getVitesse(), 0,this.obstacles);
+                    joueur.setAngle(+90);
                     break;
                 default:
                     break;
             }
         });
-        //end artus update
     }
 
 
