@@ -112,42 +112,46 @@ public class Joueur {
     }
 
     public boolean canCollideLeft(Rectangle rectangle) {
-        return this.isMovingToLeft(rectangle) && this.getLinkBounds().intersects(rectangle.getBoundsInParent());
-    }
+        double xGaucheToken = this.x - (this.width/2);
+        double murDroit  = rectangle.getX() + rectangle.getWidth();
 
-    public boolean isMovingToLeft(Rectangle rectangle) {
-        return false;
+        return (xGaucheToken <= murDroit && xGaucheToken >= rectangle.getX());
     }
 
     public boolean canCollideRight(Rectangle rectangle) {
-        return this.getLinkBounds().intersects(rectangle.getBoundsInParent());
-    }
+        double xDroiteToken = this.x + (this.width/2);
+        double murGauche = rectangle.getX();
 
-    public boolean isMovingToRight(Rectangle rectangle) {
-        return false;
+        return (xDroiteToken >= murGauche && xDroiteToken <= rectangle.getX());
     }
 
     public boolean canCollideTop(Rectangle rectangle) {
-        return this.getLinkBounds().intersects(rectangle.getBoundsInParent());
-    }
+        double yTopToken = this.y - (this.height/2);
+        double murTop = rectangle.getY();
 
-    public boolean isMovingToTop(Rectangle rectangle) {
-        return false;
+        return (yTopToken <= murTop && yTopToken >= rectangle.getY());
     }
 
     public boolean canCollideBottom(Rectangle rectangle) {
-        return this.getLinkBounds().intersects(rectangle.getBoundsInParent());
-    }
+        double yBottomToken = this.y + (this.y/2);
+        double murBottom = rectangle.getY() + rectangle.getHeight();
 
-    public boolean isMovingToBottom(Rectangle rectangle) {
-        return this.getLinkBounds().intersects(rectangle.getBoundsInParent());
-    }
-
-    private Bounds getLinkBounds() {
-        return this.link.getBoundsInParent();
+        return (yBottomToken >= murBottom && yBottomToken <= rectangle.getHeight());
     }
 
     public void setLink(Group link) {
         this.link = link;
     }
-}
+
+
+
+    }
+
+
+
+
+
+
+
+
+
