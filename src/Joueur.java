@@ -87,26 +87,26 @@ public class Joueur {
 
     private void resolveCollisionOnXAxis(List<Rectangle> obstacles) {
         for(final Rectangle obstacle : obstacles) {
-            double obstacleLeft = obstacle.getX();
-            double obstacleRight = obstacle.getX() + obstacle.getWidth();
+            final double obstacleLeft = obstacle.getX();
+            final double obstacleRight = obstacle.getX() + obstacle.getWidth();
+            final double halfWidth = this.width / 2.0;
             if(this.canCollideLeft(obstacle)) {
-                this.x = obstacleLeft - this.width;
-            }
-            if(this.canCollideRight(obstacle)) {
-                this.x = obstacleRight;
+                this.x = obstacleLeft - halfWidth;
+            } else if(this.canCollideRight(obstacle)) {
+                this.x = obstacleRight + halfWidth;
             }
         }
     }
 
     private void resolveCollisionOnYAxis(List<Rectangle> obstacles) {
         for(final Rectangle obstacle : obstacles) {
-            double obstacleTop = obstacle.getY();
-            double obstacleBottom = obstacle.getY() + obstacle.getHeight();
+            final double obstacleTop = obstacle.getY();
+            final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
+            final double halfHeight = this.height / 2.0;
             if(this.canCollideTop(obstacle)) {
-                this.y = obstacleTop - this.height;
-            }
-            if(this.canCollideBottom(obstacle)) {
-                this.y = obstacleBottom;
+                this.y = obstacleTop - halfHeight;
+            } else if(this.canCollideBottom(obstacle)) {
+                this.y = obstacleBottom + halfHeight;
             }
         }
     }
