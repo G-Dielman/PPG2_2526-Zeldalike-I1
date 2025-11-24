@@ -14,8 +14,6 @@ public class Joueur {
 
     private int vitesse = 15;
 
-
-
     private Group link;
 
     public Joueur() {
