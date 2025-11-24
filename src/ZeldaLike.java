@@ -44,6 +44,9 @@ public class ZeldaLike extends Application {
         //mure de gauche
         this.walls.add(new Wall(0,0,10,600, Color.BROWN));
 
+
+        this.walls.add(new Wall(200,200,100,100, Color.BROWN));
+
        for (Wall wall : this.walls) {
             monde.getChildren().add(wall);
             this.obstacles.add(wall);
