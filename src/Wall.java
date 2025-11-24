@@ -11,7 +11,4 @@ public class Wall extends Rectangle {
         this.setFill(color);
     }
 
-
-
-
 }
