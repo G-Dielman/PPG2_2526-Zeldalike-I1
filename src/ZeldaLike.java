@@ -46,13 +46,14 @@ public class ZeldaLike extends Application {
 
        for (Wall wall : this.walls) {
             monde.getChildren().add(wall);
-            this.obstacles.add(wall);
+             //this.obstacles.add(wall); // broken
         }
 
         primaryStage.show();
 
         Joueur joueur = new Joueur();
         joueur.spawn(monde);
+
 
 
         scene.setOnKeyPressed(event -> {

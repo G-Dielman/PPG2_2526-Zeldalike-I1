@@ -63,12 +63,13 @@ public class Joueur {
 
 
     public double getX() {
-        return this.x;
+        return this.link.getLayoutX();
     }
 
     public double getY() {
-        return this.y;
+        return this.link.getLayoutY();
     }
+
 
     public int getVitesse(){
         return this.vitesse;
@@ -142,6 +143,8 @@ public class Joueur {
     public void setLink(Group link) {
         this.link = link;
     }
+
+
 
 
 
