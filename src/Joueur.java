@@ -14,13 +14,11 @@ public class Joueur {
     private final double width =80;
     private final double height=20;
 
-
+    private int vitesse = 15;
 
     private double x = 400;
     private double y = 400;
 
-    private int vitesse = 15;
-    private double angle = 0;
 
     public Joueur(){
         this.link = createToken(1.0);
@@ -51,14 +49,16 @@ public class Joueur {
         this.resolveCollisionOnXAxis(obstacles);
         this.link.setLayoutY(this.link.getLayoutY() + movey);
         this.resolveCollisionOnYAxis(obstacles);
-        link.setLayoutX(x);
-        link.setLayoutY(y);
+
     }
 
     //add setter for angle
     public void setAngle(double angle) {
-        this.angle = angle;
         this.link.setRotate(angle);
+    }
+
+    public double getAngle() {
+        return this.link.getRotate();
     }
 
 
@@ -75,10 +75,8 @@ public class Joueur {
         return this.vitesse;
     }
 
-    //add getteur for angle
-    public double getAngle() {
-        return this.angle;
-    }
+
+
 
     public void spawn(Pane world) {
         this.link.setLayoutX(this.x);
