@@ -14,14 +14,13 @@ public class Joueur {
 
     private int vitesse = 15;
 
-    private double x = 400;
-    private double y = 400;
+
 
     private Group link;
 
     public Joueur() {
-        // TODO: Set layout x à la position par défaut
-        // TODO: Set layout y à la position par défaut
+        this.setX(400);
+        this.setY(400);
         this.link = createToken(1.0);
     }
 
@@ -52,7 +51,7 @@ public class Joueur {
     }
 
     public void setX(double x) {
-        // TODO: Set layout x
+        this.link.setLayoutX(x);
     }
 
     public double getX() {
@@ -60,7 +59,7 @@ public class Joueur {
     }
 
     public void setY(double y) {
-        // TODO: Set layout y
+        this.link.setLayoutY(y);
     }
 
     public double getY() {
@@ -131,7 +130,7 @@ public class Joueur {
     }
 
     public boolean canCollideBottom(Rectangle rectangle) {
-        double yBottomToken = this.getY() + (this.y / 2);
+        double yBottomToken = this.getY() + (this.height / 2);
         double murBottom = rectangle.getY() + rectangle.getHeight();
 
         return (yBottomToken >= murBottom && yBottomToken <= rectangle.getHeight());
