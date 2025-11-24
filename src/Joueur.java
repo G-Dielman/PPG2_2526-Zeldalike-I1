@@ -47,9 +47,9 @@ public class Joueur {
     }
 
     public void move(double movex, double movey, List<Rectangle> obstacles) {
-        this.x += movex;
+        this.link.setLayoutX(this.link.getLayoutX() + movex);
         this.resolveCollisionOnXAxis(obstacles);
-        this.y += movey;
+        this.link.setLayoutY(this.link.getLayoutY() + movey);
         this.resolveCollisionOnYAxis(obstacles);
         link.setLayoutX(x);
         link.setLayoutY(y);
