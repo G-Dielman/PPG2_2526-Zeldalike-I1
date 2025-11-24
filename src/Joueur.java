@@ -19,7 +19,9 @@ public class Joueur {
 
     private Group link;
 
-    public Joueur(){
+    public Joueur() {
+        // TODO: Set layout x à la position par défaut
+        // TODO: Set layout y à la position par défaut
         this.link = createToken(1.0);
     }
 
@@ -47,7 +49,6 @@ public class Joueur {
         this.resolveCollisionOnXAxis(obstacles);
         this.link.setLayoutY(this.link.getLayoutY() + movey);
         this.resolveCollisionOnYAxis(obstacles);
-
     }
 
     public void setX(double x) {
