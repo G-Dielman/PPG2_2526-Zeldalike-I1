@@ -19,7 +19,7 @@ public class Player extends GameObject {
         this.setY(400);
     }
 
-    public Node getToken() {
+    public Group getToken() {
         Ellipse body = new Ellipse(0,0, width / 2, height / 2);
         Circle head = new Circle(0,0,15);
         Circle hand = new Circle(32,-10,6);
