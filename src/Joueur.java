@@ -11,8 +11,7 @@ public class Joueur {
 
     private final double width = 80;
     private final double height = 20;
-
-    private int vitesse = 15;
+    private final int speed = 15;
 
     private Group link;
 
@@ -72,36 +71,52 @@ public class Joueur {
         return this.link.getRotate();
     }
 
-    public int getVitesse(){
-        return this.vitesse;
+    public int getSpeed(){
+        return this.speed;
     }
 
-    private void resolveCollisionOnXAxis(List<Rectangle> obstacles, double movex) {
-        final double halfWidth = this.width / 2.0;
+    private double getHalfWidth() { return this.width / 2.0; }
+
+    private double getHalfHeight() { return this.height / 2.0; }
+
+    private double getTokenBottom() { return this.getY() + this.getHalfHeight(); }
+
+    private double getTokenTop() { return this.getY() - this.getHalfHeight(); }
+
+    private double getTokenRight() { return this.getX() + this.getHalfWidth(); }
+
+    private double getTokenLeft() { return this.getX() - this.getHalfWidth(); }
+
+    private double getObstacleLeft(Rectangle obstacle) { return obstacle.getX(); }
+
+    private double getObstacleRight(Rectangle obstacle) { return obstacle.getX() + obstacle.getWidth(); }
+
+    private double getObstacleTop(Rectangle obstacle) { return obstacle.getY(); }
+
+    private double getObstacleBottom(Rectangle obstacle) { return obstacle.getY() + obstacle.getHeight(); }
+
+    private void resolveCollisionOnXAxis(List<Rectangle> obstacles, double dx) {
+        final double halfWidth = this.getHalfWidth();
         for(final Rectangle obstacle : obstacles) {
-            final double obstacleLeft = obstacle.getX();
-            final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-            if (movex > 0 && this.canCollideLeft(obstacle)) {
+            if (dx > 0 && this.canCollideLeft(obstacle)) {
                 System.out.println("left");
-                this.setX(obstacleLeft - halfWidth);
-            } else if (movex < 0 && this.canCollideRight(obstacle)) {
+                this.setX(this.getObstacleLeft(obstacle) - halfWidth);
+            } else if (dx < 0 && this.canCollideRight(obstacle)) {
                 System.out.println("right");
-                this.setX(obstacleRight + halfWidth);
+                this.setX(this.getObstacleRight(obstacle) + halfWidth);
             }
         }
     }
 
-    private void resolveCollisionOnYAxis(List<Rectangle> obstacles, double movey) {
-        final double halfHeight = this.height / 2.0;
+    private void resolveCollisionOnYAxis(List<Rectangle> obstacles, double dy) {
+        final double halfHeight = this.getHalfHeight();
         for(final Rectangle obstacle : obstacles) {
-            final double obstacleTop = obstacle.getY();
-            final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
-            if (movey > 0 && this.canCollideTop(obstacle)) {
+            if (dy > 0 && this.canCollideTop(obstacle)) {
                 System.out.println("top");
-                this.setY(obstacleTop - halfHeight);
-            } else if (movey < 0 && this.canCollideBottom(obstacle)) {
+                this.setY(this.getObstacleTop(obstacle) - halfHeight);
+            } else if (dy < 0 && this.canCollideBottom(obstacle)) {
                 System.out.println("bottom");
-                this.setY(obstacleBottom + halfHeight);
+                this.setY(this.getObstacleBottom(obstacle) + halfHeight);
             }
         }
     }
@@ -112,26 +127,13 @@ public class Joueur {
 
         //return (xGaucheToken <= murDroit && xGaucheToken >= rectangle.getX());
 
-        final double halfWidth = this.width / 2.0;
-        final double halfHeight = this.height / 2.0;
-
-        final double tokenLeft = this.getX() - halfWidth;
-        final double tokenRight = this.getX() + halfWidth;
-        final double tokenTop = this.getY() - halfHeight;
-        final double tokenBottom = this.getY() + halfHeight;
-
-        final double obstacleLeft = obstacle.getX();
-        final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-        final double obstacleTop = obstacle.getY();
-        final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
-
         final boolean overlapsHorizontally = (
-            tokenRight > obstacleLeft &&
-            tokenLeft < obstacleRight
+            this.getTokenRight() > this.getObstacleLeft(obstacle) &&
+            this.getTokenLeft() < this.getObstacleRight(obstacle)
         );
         final boolean overlapsVertically = (
-            tokenBottom > obstacleTop &&
-            tokenTop < obstacleBottom
+            this.getTokenBottom() > this.getObstacleTop(obstacle) &&
+            this.getTokenTop() < this.getObstacleBottom(obstacle)
         );
         return overlapsHorizontally && overlapsVertically;
     }
@@ -142,25 +144,13 @@ public class Joueur {
 
         //return (xDroiteToken >= murGauche && xDroiteToken <= rectangle.getX());
 
-        final double halfWidth = this.width / 2.0;
-        final double halfHeight = this.height / 2.0;
-
-        final double tokenLeft = this.getX() - halfWidth;
-        final double tokenRight = this.getX() + halfWidth;
-        final double tokenTop = this.getY() - halfHeight;
-        final double tokenBottom = this.getY() + halfHeight;
-
-        final double obstacleLeft = obstacle.getX();
-        final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-        final double obstacleTop = obstacle.getY();
-        final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
         final boolean overlapsHorizontally = (
-            tokenRight > obstacleLeft &&
-            tokenLeft < obstacleRight
+            this.getTokenRight() > this.getObstacleLeft(obstacle) &&
+            this.getTokenLeft() < this.getObstacleRight(obstacle)
         );
         final boolean overlapsVertically = (
-            tokenBottom > obstacleTop &&
-            tokenTop < obstacleBottom
+            this.getTokenBottom() > this.getObstacleTop(obstacle) &&
+            this.getTokenTop() < this.getObstacleBottom(obstacle)
         );
         return overlapsHorizontally && overlapsVertically;
     }
@@ -171,23 +161,13 @@ public class Joueur {
 
         //return (yTopToken <= murTop && yTopToken >= rectangle.getY());
 
-        final double halfWidth = this.width / 2.0;
-        final double halfHeight = this.height / 2.0;
-        final double tokenLeft = this.getX() - halfWidth;
-        final double tokenRight = this.getX() + halfWidth;
-        final double tokenTop = this.getY() - halfHeight;
-        final double tokenBottom = this.getY() + halfHeight;
-        final double obstacleLeft = obstacle.getX();
-        final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-        final double obstacleTop = obstacle.getY();
-        final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
         final boolean overlapsHorizontally = (
-            tokenRight > obstacleLeft &&
-            tokenLeft < obstacleRight
+            this.getTokenRight() > this.getObstacleLeft(obstacle) &&
+            this.getTokenLeft() < this.getObstacleRight(obstacle)
         );
         final boolean overlapsVertically = (
-            tokenBottom > obstacleTop &&
-            tokenTop < obstacleBottom
+            this.getTokenBottom() > this.getObstacleTop(obstacle) &&
+            this.getTokenTop() < this.getObstacleBottom(obstacle)
         );
         return overlapsHorizontally && overlapsVertically;
     }
@@ -198,23 +178,13 @@ public class Joueur {
 
         //return (yBottomToken >= murBottom && yBottomToken <= rectangle.getHeight());
 
-        final double halfWidth = this.width / 2.0;
-        final double halfHeight = this.height / 2.0;
-        final double tokenLeft = this.getX() - halfWidth;
-        final double tokenRight = this.getX() + halfWidth;
-        final double tokenTop = this.getY() - halfHeight;
-        final double tokenBottom = this.getY() + halfHeight;
-        final double obstacleLeft = obstacle.getX();
-        final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-        final double obstacleTop = obstacle.getY();
-        final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
         final boolean overlapsHorizontally = (
-            tokenRight > obstacleLeft &&
-            tokenLeft < obstacleRight
+            this.getTokenRight() > this.getObstacleLeft(obstacle) &&
+            this.getTokenLeft() < this.getObstacleRight(obstacle)
         );
         final boolean overlapsVertically = (
-            tokenBottom > obstacleTop &&
-            tokenTop < obstacleBottom
+            this.getTokenBottom() > this.getObstacleTop(obstacle) &&
+            this.getTokenTop() < this.getObstacleBottom(obstacle)
         );
         return overlapsHorizontally && overlapsVertically;
     }
