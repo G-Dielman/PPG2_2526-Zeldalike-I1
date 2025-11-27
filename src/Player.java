@@ -7,15 +7,15 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
-public class Joueur {
+public class Player {
 
     private final double width = 80;
     private final double height = 20;
     private final int speed = 15;
 
-    private Group token;
+    private  Group token;
 
-    public Joueur() {
+    public Player() {
         this.token = createToken(1.0);
         this.setX(400);
         this.setY(400);
