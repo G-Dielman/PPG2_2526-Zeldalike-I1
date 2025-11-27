@@ -192,28 +192,4 @@ public class Player extends GameObject {
         return obstacle.getY() + obstacle.getHeight();
     }
 
-    public void setX(double x) {
-        this.getToken().setLayoutX(x);
-    }
-
-    public double getX() {
-        return this.getToken().getLayoutX();
-    }
-
-    public void setY(double y) {
-        this.getToken().setLayoutY(y);
-    }
-
-    public double getY() {
-        return this.getToken().getLayoutY();
-    }
-
-    public void setAngle(double angle) {
-        this.getToken().setRotate(angle);
-    }
-
-    public double getAngle() {
-        return this.getToken().getRotate();
-    }
-
 }
