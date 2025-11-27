@@ -17,18 +17,17 @@ public class Player extends GameObject {
     }
 
     public Group getToken() {
-        Ellipse body = new Ellipse(0,0, width / 2, height / 2);
-        Circle head = new Circle(0,0,15);
-        Circle hand = new Circle(32,-10,6);
-        Rectangle sword = new Rectangle(25,-13 ,15,3);
+        final Ellipse body = new Ellipse(0,0, this.width / 2, this.height / 2);
+        final Circle head = new Circle(0,0,15);
+        final Circle hand = new Circle(32,-10,6);
+        final Rectangle sword = new Rectangle(25,-13 ,15,3);
 
         body.setFill(Color.DARKOLIVEGREEN);
         head.setFill(Color.DARKORANGE);
         hand.setFill(Color.DARKGREEN);
         sword.setFill(Color.WHITE);
 
-        Group group = new Group(body, head, hand, sword);
-        return group;
+        return new Group(body, head, hand, sword);
     }
 
     public void moveLeft(List<Rectangle> obstacles) {
@@ -82,11 +81,6 @@ public class Player extends GameObject {
     }
 
     public boolean canCollideLeft(Rectangle obstacle) {
-        //double xGaucheToken = this.getX() - (this.width / 2);
-        //double murDroit  = rectangle.getX() + rectangle.getWidth();
-
-        //return (xGaucheToken <= murDroit && xGaucheToken >= rectangle.getX());
-
         final boolean overlapsHorizontally = (
             this.getTokenRight() > this.getObstacleLeft(obstacle) &&
             this.getTokenLeft() < this.getObstacleRight(obstacle)
@@ -99,11 +93,6 @@ public class Player extends GameObject {
     }
 
     public boolean canCollideRight(Rectangle obstacle) {
-        //double xDroiteToken = this.getX() + (this.width / 2);
-        //double murGauche = rectangle.getX();
-
-        //return (xDroiteToken >= murGauche && xDroiteToken <= rectangle.getX());
-
         final boolean overlapsHorizontally = (
             this.getTokenRight() > this.getObstacleLeft(obstacle) &&
             this.getTokenLeft() < this.getObstacleRight(obstacle)
@@ -116,11 +105,6 @@ public class Player extends GameObject {
     }
 
     public boolean canCollideTop(Rectangle obstacle) {
-        //double yTopToken = this.getY() - (this.height / 2);
-        //double murTop = rectangle.getY();
-
-        //return (yTopToken <= murTop && yTopToken >= rectangle.getY());
-
         final boolean overlapsHorizontally = (
             this.getTokenRight() > this.getObstacleLeft(obstacle) &&
             this.getTokenLeft() < this.getObstacleRight(obstacle)
@@ -133,11 +117,6 @@ public class Player extends GameObject {
     }
 
     public boolean canCollideBottom(Rectangle obstacle) {
-        //double yBottomToken = this.getY() + (this.height / 2);
-        //double murBottom = rectangle.getY() + rectangle.getHeight();
-
-        //return (yBottomToken >= murBottom && yBottomToken <= rectangle.getHeight());
-
         final boolean overlapsHorizontally = (
             this.getTokenRight() > this.getObstacleLeft(obstacle) &&
             this.getTokenLeft() < this.getObstacleRight(obstacle)
