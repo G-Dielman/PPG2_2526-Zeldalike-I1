@@ -47,7 +47,7 @@ public class ZeldaLikeApplication extends Application {
         primaryStage.show();
 
         Player joueur = new Player();
-        joueur.spawn(monde);
+        joueur.addToPane(monde);
 
 
 
