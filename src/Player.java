@@ -14,9 +14,9 @@ public class Player extends GameObject {
     private final double height = 20;
     private final int speed = 15;
 
-    public Player() {
-        this.setX(400);
-        this.setY(400);
+    public Player(double initialX, double initialY) {
+        this.setX(initialX);
+        this.setY(initialY);
     }
 
     public Group getToken() {

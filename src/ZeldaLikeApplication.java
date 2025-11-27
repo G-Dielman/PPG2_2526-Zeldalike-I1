@@ -10,21 +10,19 @@ import java.util.List;
 
 public class ZeldaLikeApplication extends Application {
 
-    private static final int LARGEUR = 800;
-    private static final int HAUTEUR = 600;
-    private Pane monde;
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 600;
+    private Scene scene;
+    private Pane pane;
     private Player player;
-    private List<Rectangle>obstacles;
+    private List<Rectangle> obstacles;
     private List<Wall> walls;
 
     @Override
     public void start(Stage primaryStage) {
-        monde = new Pane();
-        int position = 0;
-        Scene scene = new Scene(monde, LARGEUR, HAUTEUR);
+        this.pane = new Pane();
+        this.scene = new Scene(this.pane, WIDTH, HEIGHT);
 
-        primaryStage.setTitle("Zelda Like - Itération 1");
-        primaryStage.setScene(scene);
 
         this.obstacles = new ArrayList<>();
         this.walls = new ArrayList<>();
@@ -41,14 +39,13 @@ public class ZeldaLikeApplication extends Application {
         this.walls.add(new Wall(200,200,100,100, Color.BROWN));
 
        for (Wall wall : this.walls) {
-            monde.getChildren().add(wall);
+            this.pane.getChildren().add(wall);
             this.obstacles.add(wall);
         }
 
-        primaryStage.show();
 
-        this.player = new Player();
-        this.player.addToPane(monde);
+        this.player = new Player(400, 400);
+        this.player.addToPane(this.pane);
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -66,6 +63,11 @@ public class ZeldaLikeApplication extends Application {
                     break;
             }
         });
+
+
+       primaryStage.setTitle("Zelda Like - Itération 1");
+       primaryStage.setScene(this.scene);
+       primaryStage.show();
     }
 
 
