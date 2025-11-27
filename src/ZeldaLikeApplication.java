@@ -22,10 +22,13 @@ public class ZeldaLikeApplication extends Application {
     public void start(Stage primaryStage) {
         this.pane = new Pane();
         this.scene = new Scene(this.pane, WIDTH, HEIGHT);
+        this.player = new Player(400, 400);
+        this.player.addToPane(this.pane);
 
 
         this.obstacles = new ArrayList<>();
         this.walls = new ArrayList<>();
+
         //mure du haut
         this.walls.add(new Wall(0,0,800,10, Color.BROWN));
        //mure du bas
@@ -44,8 +47,6 @@ public class ZeldaLikeApplication extends Application {
         }
 
 
-        this.player = new Player(400, 400);
-        this.player.addToPane(this.pane);
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
