@@ -62,20 +62,20 @@ public class ZeldaLike extends Application {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case UP:
-                    joueur.move(0, -joueur.getSpeed(),this.obstacles);
-                    joueur.setAngle(0);
+                    joueur.move(0, -joueur.getSpeed(),0,this.obstacles);
+                    ;
                     break;
                 case DOWN:
-                    joueur.move(0, +joueur.getSpeed(),this.obstacles);
-                    joueur.setAngle(-180);
+                    joueur.move(0, +joueur.getSpeed(),-180,this.obstacles);
+
                     break;
                 case LEFT:
-                    joueur.move(-joueur.getSpeed(), 0,this.obstacles);
-                    joueur.setAngle(-90);
+                    joueur.move(-joueur.getSpeed(),0, -90,this.obstacles);
+
                     break;
                 case RIGHT:
-                    joueur.move(+joueur.getSpeed(), 0,this.obstacles);
-                    joueur.setAngle(+90);
+                    joueur.move(+joueur.getSpeed(),0, 90,this.obstacles);
+
                     break;
                 default:
                     break;
