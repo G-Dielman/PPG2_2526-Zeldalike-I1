@@ -13,10 +13,10 @@ public class Joueur {
     private final double height = 20;
     private final int speed = 15;
 
-    private Group link;
+    private Group token;
 
     public Joueur() {
-        this.link = createToken(1.0);
+        this.token = createToken(1.0);
         this.setX(400);
         this.setY(400);
     }
@@ -37,63 +37,15 @@ public class Joueur {
     }
 
     public void spawn(Pane world) {
-        world.getChildren().add(this.link);
+        world.getChildren().add(this.token);
     }
 
     public void move(double movex, double movey, List<Rectangle> obstacles) {
-        this.link.setLayoutX(this.link.getLayoutX() + movex);
+        this.token.setLayoutX(this.token.getLayoutX() + movex);
         this.resolveCollisionOnXAxis(obstacles, movex);
-        this.link.setLayoutY(this.link.getLayoutY() + movey);
+        this.token.setLayoutY(this.token.getLayoutY() + movey);
         this.resolveCollisionOnYAxis(obstacles, movey);
     }
-
-    public void setX(double x) {
-        this.link.setLayoutX(x);
-    }
-
-    public double getX() {
-        return this.link.getLayoutX();
-    }
-
-    public void setY(double y) {
-        this.link.setLayoutY(y);
-    }
-
-    public double getY() {
-        return this.link.getLayoutY();
-    }
-
-    public void setAngle(double angle) {
-        this.link.setRotate(angle);
-    }
-
-    public double getAngle() {
-        return this.link.getRotate();
-    }
-
-    public int getSpeed(){
-        return this.speed;
-    }
-
-    private double getHalfWidth() { return this.width / 2.0; }
-
-    private double getHalfHeight() { return this.height / 2.0; }
-
-    private double getTokenBottom() { return this.getY() + this.getHalfHeight(); }
-
-    private double getTokenTop() { return this.getY() - this.getHalfHeight(); }
-
-    private double getTokenRight() { return this.getX() + this.getHalfWidth(); }
-
-    private double getTokenLeft() { return this.getX() - this.getHalfWidth(); }
-
-    private double getObstacleLeft(Rectangle obstacle) { return obstacle.getX(); }
-
-    private double getObstacleRight(Rectangle obstacle) { return obstacle.getX() + obstacle.getWidth(); }
-
-    private double getObstacleTop(Rectangle obstacle) { return obstacle.getY(); }
-
-    private double getObstacleBottom(Rectangle obstacle) { return obstacle.getY() + obstacle.getHeight(); }
 
     private void resolveCollisionOnXAxis(List<Rectangle> obstacles, double dx) {
         final double halfWidth = this.getHalfWidth();
@@ -187,6 +139,74 @@ public class Joueur {
             this.getTokenTop() < this.getObstacleBottom(obstacle)
         );
         return overlapsHorizontally && overlapsVertically;
+    }
+
+    private double getHalfWidth() {
+        return this.width / 2.0;
+    }
+
+    private double getHalfHeight() {
+        return this.height / 2.0;
+    }
+
+    private double getTokenBottom() {
+        return this.getY() + this.getHalfHeight();
+    }
+
+    private double getTokenTop() {
+        return this.getY() - this.getHalfHeight();
+    }
+
+    private double getTokenRight() {
+        return this.getX() + this.getHalfWidth();
+    }
+
+    private double getTokenLeft() {
+        return this.getX() - this.getHalfWidth();
+    }
+
+    private double getObstacleLeft(Rectangle obstacle) {
+        return obstacle.getX();
+    }
+
+    private double getObstacleRight(Rectangle obstacle) {
+        return obstacle.getX() + obstacle.getWidth();
+    }
+
+    private double getObstacleTop(Rectangle obstacle) {
+        return obstacle.getY();
+    }
+
+    private double getObstacleBottom(Rectangle obstacle) {
+        return obstacle.getY() + obstacle.getHeight();
+    }
+
+    public void setX(double x) {
+        this.token.setLayoutX(x);
+    }
+
+    public double getX() {
+        return this.token.getLayoutX();
+    }
+
+    public void setY(double y) {
+        this.token.setLayoutY(y);
+    }
+
+    public double getY() {
+        return this.token.getLayoutY();
+    }
+
+    public void setAngle(double angle) {
+        this.token.setRotate(angle);
+    }
+
+    public double getAngle() {
+        return this.token.getRotate();
+    }
+
+    public int getSpeed(){
+        return this.speed;
     }
 
 }
