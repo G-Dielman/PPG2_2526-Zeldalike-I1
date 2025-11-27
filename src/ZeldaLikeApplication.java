@@ -13,6 +13,7 @@ public class ZeldaLikeApplication extends Application {
     private static final int LARGEUR = 800;
     private static final int HAUTEUR = 600;
     private Pane monde;
+    private Player player;
     private List<Rectangle>obstacles;
     private List<Wall> walls;
 
@@ -46,30 +47,22 @@ public class ZeldaLikeApplication extends Application {
 
         primaryStage.show();
 
-        Player joueur = new Player();
-        joueur.addToPane(monde);
-
-
+        this.player = new Player();
+        this.player.addToPane(monde);
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case UP:
-                    joueur.move(0, -joueur.getSpeed(),0,this.obstacles);
-                    ;
+                    this.player.move(this.obstacles, 0, -this.player.getSpeed(),0);
                     break;
                 case DOWN:
-                    joueur.move(0, +joueur.getSpeed(),-180,this.obstacles);
-
+                    this.player.move(this.obstacles, 0, +this.player.getSpeed(),-180);
                     break;
                 case LEFT:
-                    joueur.move(-joueur.getSpeed(),0, -90,this.obstacles);
-
+                    this.player.move(this.obstacles, -this.player.getSpeed(),0, -90);
                     break;
                 case RIGHT:
-                    joueur.move(+joueur.getSpeed(),0, 90,this.obstacles);
-
-                    break;
-                default:
+                    this.player.move(this.obstacles, +this.player.getSpeed(),0, 90);
                     break;
             }
         });
