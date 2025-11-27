@@ -34,7 +34,7 @@ public class Player extends GameObject {
         return group;
     }
 
-    public void move(double dx, double dy,double angle, List<Rectangle> obstacles) {
+    public void move(List<Rectangle> obstacles, double dx, double dy, double angle) {
         this.setAngle(angle);
         this.setX(this.getX() + dx);
         this.resolveCollisionOnXAxis(obstacles, dx);
