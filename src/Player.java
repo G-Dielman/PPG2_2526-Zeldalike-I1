@@ -1,8 +1,6 @@
 import java.util.List;
 
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
@@ -10,11 +8,10 @@ import javafx.scene.shape.Rectangle;
 
 public class Player extends GameObject {
 
-    private final double width = 80;
-    private final double height = 20;
     private final int speed = 15;
 
     public Player(double initialX, double initialY) {
+        super(80, 20);
         this.setX(initialX);
         this.setY(initialY);
     }
@@ -150,30 +147,6 @@ public class Player extends GameObject {
             this.getTokenTop() < this.getObstacleBottom(obstacle)
         );
         return overlapsHorizontally && overlapsVertically;
-    }
-
-    private double getHalfWidth() {
-        return this.width / 2.0;
-    }
-
-    private double getHalfHeight() {
-        return this.height / 2.0;
-    }
-
-    private double getTokenBottom() {
-        return this.getY() + this.getHalfHeight();
-    }
-
-    private double getTokenTop() {
-        return this.getY() - this.getHalfHeight();
-    }
-
-    private double getTokenRight() {
-        return this.getX() + this.getHalfWidth();
-    }
-
-    private double getTokenLeft() {
-        return this.getX() - this.getHalfWidth();
     }
 
     private double getObstacleLeft(Rectangle obstacle) {
