@@ -216,8 +216,4 @@ public class Player extends GameObject {
         return this.getToken().getRotate();
     }
 
-    public int getSpeed(){
-        return this.speed;
-    }
-
 }
