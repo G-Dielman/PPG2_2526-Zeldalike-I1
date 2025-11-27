@@ -1,27 +1,25 @@
 import java.util.List;
 
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
-public class Player {
+public class Player extends GameObject {
 
     private final double width = 80;
     private final double height = 20;
     private final int speed = 15;
 
-    private Group token;
-
     public Player() {
-        this.token = createToken(1.0);
         this.setX(400);
         this.setY(400);
     }
 
-    private Group createToken(double scale) {
+    public Node getToken() {
         Ellipse body = new Ellipse(0,0, width / 2, height / 2);
         Circle head = new Circle(0,0,15);
         Circle hand = new Circle(32,-10,6);
@@ -36,16 +34,12 @@ public class Player {
         return group;
     }
 
-    public void spawn(Pane world) {
-        world.getChildren().add(this.token);
-    }
-
-    public void move(double movex, double movey,double angle, List<Rectangle> obstacles) {
+    public void move(double dx, double dy,double angle, List<Rectangle> obstacles) {
         this.setAngle(angle);
-        this.setX(this.getX() + movex);
-        this.resolveCollisionOnXAxis(obstacles, movex);
-        this.setY(this.getY() + movey);
-        this.resolveCollisionOnYAxis(obstacles, movey);
+        this.setX(this.getX() + dx);
+        this.resolveCollisionOnXAxis(obstacles, dx);
+        this.setY(this.getY() + dy);
+        this.resolveCollisionOnYAxis(obstacles, dy);
     }
 
     private void resolveCollisionOnXAxis(List<Rectangle> obstacles, double dx) {
@@ -80,19 +74,6 @@ public class Player {
 
         //return (xGaucheToken <= murDroit && xGaucheToken >= rectangle.getX());
 
-        final double halfWidth = this.width / 2.0;
-        final double halfHeight = this.height / 2.0;
-
-        final double tokenLeft = this.getX() - halfWidth;
-        final double tokenRight = this.getX() + halfWidth;
-        final double tokenTop = this.getY() - halfHeight;
-        final double tokenBottom = this.getY() + halfHeight;
-
-        final double obstacleLeft = obstacle.getX();
-        final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-        final double obstacleTop = obstacle.getY();
-        final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
-
         final boolean overlapsHorizontally = (
             this.getTokenRight() > this.getObstacleLeft(obstacle) &&
             this.getTokenLeft() < this.getObstacleRight(obstacle)
@@ -110,18 +91,6 @@ public class Player {
 
         //return (xDroiteToken >= murGauche && xDroiteToken <= rectangle.getX());
 
-        final double halfWidth = this.width / 2.0;
-        final double halfHeight = this.height / 2.0;
-
-        final double tokenLeft = this.getX() - halfWidth;
-        final double tokenRight = this.getX() + halfWidth;
-        final double tokenTop = this.getY() - halfHeight;
-        final double tokenBottom = this.getY() + halfHeight;
-
-        final double obstacleLeft = obstacle.getX();
-        final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-        final double obstacleTop = obstacle.getY();
-        final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
         final boolean overlapsHorizontally = (
             this.getTokenRight() > this.getObstacleLeft(obstacle) &&
             this.getTokenLeft() < this.getObstacleRight(obstacle)
@@ -139,16 +108,6 @@ public class Player {
 
         //return (yTopToken <= murTop && yTopToken >= rectangle.getY());
 
-        final double halfWidth = this.width / 2.0;
-        final double halfHeight = this.height / 2.0;
-        final double tokenLeft = this.getX() - halfWidth;
-        final double tokenRight = this.getX() + halfWidth;
-        final double tokenTop = this.getY() - halfHeight;
-        final double tokenBottom = this.getY() + halfHeight;
-        final double obstacleLeft = obstacle.getX();
-        final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-        final double obstacleTop = obstacle.getY();
-        final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
         final boolean overlapsHorizontally = (
             this.getTokenRight() > this.getObstacleLeft(obstacle) &&
             this.getTokenLeft() < this.getObstacleRight(obstacle)
@@ -166,16 +125,6 @@ public class Player {
 
         //return (yBottomToken >= murBottom && yBottomToken <= rectangle.getHeight());
 
-        final double halfWidth = this.width / 2.0;
-        final double halfHeight = this.height / 2.0;
-        final double tokenLeft = this.getX() - halfWidth;
-        final double tokenRight = this.getX() + halfWidth;
-        final double tokenTop = this.getY() - halfHeight;
-        final double tokenBottom = this.getY() + halfHeight;
-        final double obstacleLeft = obstacle.getX();
-        final double obstacleRight = obstacle.getX() + obstacle.getWidth();
-        final double obstacleTop = obstacle.getY();
-        final double obstacleBottom = obstacle.getY() + obstacle.getHeight();
         final boolean overlapsHorizontally = (
             this.getTokenRight() > this.getObstacleLeft(obstacle) &&
             this.getTokenLeft() < this.getObstacleRight(obstacle)
@@ -228,27 +177,27 @@ public class Player {
     }
 
     public void setX(double x) {
-        this.token.setLayoutX(x);
+        this.getToken().setLayoutX(x);
     }
 
     public double getX() {
-        return this.token.getLayoutX();
+        return this.getToken().getLayoutX();
     }
 
     public void setY(double y) {
-        this.token.setLayoutY(y);
+        this.getToken().setLayoutY(y);
     }
 
     public double getY() {
-        return this.token.getLayoutY();
+        return this.getToken().getLayoutY();
     }
 
     public void setAngle(double angle) {
-        this.token.setRotate(angle);
+        this.getToken().setRotate(angle);
     }
 
     public double getAngle() {
-        return this.token.getRotate();
+        return this.getToken().getRotate();
     }
 
     public int getSpeed(){
