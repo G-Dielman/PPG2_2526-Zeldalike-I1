@@ -52,17 +52,17 @@ public class ZeldaLikeApplication extends Application {
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case UP:
-                    this.player.move(this.obstacles, 0, -this.player.getSpeed(),0);
-                    break;
-                case DOWN:
-                    this.player.move(this.obstacles, 0, +this.player.getSpeed(),-180);
-                    break;
                 case LEFT:
-                    this.player.move(this.obstacles, -this.player.getSpeed(),0, -90);
+                    this.player.moveLeft(this.obstacles);
                     break;
                 case RIGHT:
-                    this.player.move(this.obstacles, +this.player.getSpeed(),0, 90);
+                    this.player.moveRight(this.obstacles);
+                    break;
+                case UP:
+                    this.player.moveUp(this.obstacles);
+                    break;
+                case DOWN:
+                    this.player.moveDown(this.obstacles);
                     break;
             }
         });

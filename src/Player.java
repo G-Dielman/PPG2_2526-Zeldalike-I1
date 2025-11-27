@@ -34,6 +34,22 @@ public class Player extends GameObject {
         return group;
     }
 
+    public void moveLeft(List<Rectangle> obstacles) {
+        this.move(obstacles, -this.getSpeed(),0, -90);
+    }
+
+    public void moveRight(List<Rectangle> obstacles) {
+        this.move(obstacles, this.getSpeed(),0, 90);
+    }
+
+    public void moveUp(List<Rectangle> obstacles) {
+        this.move(obstacles, 0, -this.getSpeed(),0);
+    }
+
+    public void moveDown(List<Rectangle> obstacles) {
+        this.move(obstacles, 0, +this.getSpeed(),-180);
+    }
+
     public void move(List<Rectangle> obstacles, double dx, double dy, double angle) {
         this.setAngle(angle);
         this.setX(this.getX() + dx);
