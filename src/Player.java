@@ -13,7 +13,7 @@ public class Player {
     private final double height = 20;
     private final int speed = 15;
 
-    private  Group token;
+    private Group token;
 
     public Player() {
         this.token = createToken(1.0);
