@@ -10,6 +10,8 @@ public abstract class GameObject {
         this.height = height;
     }
 
+    protected abstract Group createToken();
+
     protected abstract Group getToken();
 
     protected void addToPane(Pane pane) {

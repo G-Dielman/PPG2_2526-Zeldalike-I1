@@ -20,6 +20,21 @@ public class Player extends GameObject {
     }
 
     @Override
+    protected Group createToken() {
+        final Ellipse body = new Ellipse(0,0, this.width / 2, this.height / 2);
+        final Circle head = new Circle(0,0,15);
+        final Circle hand = new Circle(32,-10,6);
+        final Rectangle sword = new Rectangle(25,-13 ,15,3);
+
+        body.setFill(Color.DARKOLIVEGREEN);
+        head.setFill(Color.DARKORANGE);
+        hand.setFill(Color.DARKGREEN);
+        sword.setFill(Color.WHITE);
+
+        return new Group(body, head, hand, sword);
+    }
+
+    @Override
     protected Group getToken() {
         return this.token;
     }
@@ -46,20 +61,6 @@ public class Player extends GameObject {
         this.resolveCollisionOnXAxis(obstacles, dx);
         this.setY(this.getY() + dy);
         this.resolveCollisionOnYAxis(obstacles, dy);
-    }
-
-    private Group createToken() {
-        final Ellipse body = new Ellipse(0,0, this.width / 2, this.height / 2);
-        final Circle head = new Circle(0,0,15);
-        final Circle hand = new Circle(32,-10,6);
-        final Rectangle sword = new Rectangle(25,-13 ,15,3);
-
-        body.setFill(Color.DARKOLIVEGREEN);
-        head.setFill(Color.DARKORANGE);
-        hand.setFill(Color.DARKGREEN);
-        sword.setFill(Color.WHITE);
-
-        return new Group(body, head, hand, sword);
     }
 
     private void resolveCollisionOnXAxis(List<Rectangle> obstacles, double dx) {
