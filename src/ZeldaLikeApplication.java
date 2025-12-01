@@ -14,19 +14,19 @@ public class ZeldaLikeApplication extends Application {
     private static final int HEIGHT = 600;
     private static final int WALL_THICKNESS = 10;
 
-    private Scene scene;
     private Pane pane;
-    private Player player;
+    private Scene scene;
     private List<Rectangle> obstacles;
+    private Player player;
 
     @Override
     public void start(Stage primaryStage) {
         this.pane = new Pane();
         this.scene = new Scene(this.pane, WIDTH, HEIGHT);
-        this.player = new Player(400, 400);
-        this.player.addToPane(this.pane);
         this.obstacles = new ArrayList<>();
         this.buildWalls();
+        this.player = new Player(400, 400);
+        this.player.addToPane(this.pane);
         this.addPlayerControls();
 
         primaryStage.setTitle("Zelda Like - Itération 1");
@@ -35,10 +35,10 @@ public class ZeldaLikeApplication extends Application {
     }
 
     private void buildWalls() {
-        this.addWallObstacle(new Wall(0,0, WIDTH, WALL_THICKNESS, Color.BROWN)); // Up
-        this.addWallObstacle(new Wall(0,HEIGHT - WALL_THICKNESS,WIDTH,WALL_THICKNESS, Color.BROWN)); // Down
+        this.addWallObstacle(new Wall(0,0, WIDTH, WALL_THICKNESS, Color.BROWN)); // Top
+        this.addWallObstacle(new Wall(0,HEIGHT - WALL_THICKNESS,WIDTH,WALL_THICKNESS, Color.BROWN)); // Bottom
+        this.addWallObstacle(new Wall(0,0,WALL_THICKNESS, HEIGHT, Color.BROWN)); // Left
         this.addWallObstacle(new Wall(WIDTH - WALL_THICKNESS,0, WALL_THICKNESS, HEIGHT, Color.BROWN)); // Right
-        this.addWallObstacle(new Wall(0,0,WALL_THICKNESS,600, Color.BROWN)); // Left
 
         this.addWallObstacle(new Wall(200,200,100,100, Color.BROWN)); // Middle
     }
