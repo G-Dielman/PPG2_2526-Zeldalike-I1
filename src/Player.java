@@ -10,11 +10,8 @@ public class Player extends GameObject {
 
     private final int speed = 15;
 
-    private final Group token;
-
     public Player(double initialX, double initialY) {
         super(80, 20);
-        this.token = this.createToken();
         this.setX(initialX);
         this.setY(initialY);
     }
@@ -32,11 +29,6 @@ public class Player extends GameObject {
         sword.setFill(Color.WHITE);
 
         return new Group(body, head, hand, sword);
-    }
-
-    @Override
-    protected Group getToken() {
-        return this.token;
     }
 
     public void moveLeft(List<Rectangle> obstacles) {

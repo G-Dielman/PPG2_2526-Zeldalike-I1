@@ -5,14 +5,19 @@ public abstract class GameObject {
 
     protected double width, height;
 
+    protected final Group token;
+
     public GameObject(double width, double height) {
         this.width = width;
         this.height = height;
+        this.token = this.createToken();
     }
 
     protected abstract Group createToken();
 
-    protected abstract Group getToken();
+    protected Group getToken() {
+        return this.token;
+    }
 
     protected void addToPane(Pane pane) {
         pane.getChildren().add(this.getToken());
